@@ -20,7 +20,6 @@ const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 const KOVAN_NETWORK_ID = 42;
 const KOVAN_RPC = 'https://kovan.infura.io';
-const WETH9 = "0xd0a1e359811322d97991e03f863a0c30c2cf029c";
 const POINT_ONE_ETHER = Web3Wrapper.toBaseUnitAmount(new BigNumber(0.01), 18);
 
 const providerEngine = new Web3ProviderEngine({ pollingInterval: 10000 });
@@ -45,13 +44,14 @@ const erc20TokenWrapper = wrappers.erc20Token;
 const erc721TokenWrapper = wrappers.erc721Token;
 const exchangeWrapper = wrappers.exchange;
 const web3Wrapper = new Web3Wrapper(providerEngine);
+const etherTokenAddress = wrappers.etherToken.getContractAddressIfExists();
 
 function getWethBalance(address) {
-  return erc20TokenWrapper.getBalanceAsync(WETH9, address);
+  return erc20TokenWrapper.getBalanceAsync(etherTokenAddress, address);
 }
 
 function wrap(address, weth) {
-  return etherTokenWrapper.depositAsync(WETH9, new BigNumber(weth * weiToEth), address);
+  return etherTokenWrapper.depositAsync(etherTokenAddress, new BigNumber(weth * weiToEth), address);
 }
 
 async function createSignedOrder(maker, makerTokenAddress, makerTokenId) {
@@ -76,7 +76,7 @@ async function createSignedOrder(maker, makerTokenAddress, makerTokenId) {
     makerAssetAmount: new BigNumber(1),
     takerAssetAmount: POINT_ONE_ETHER,
     makerAssetData: assetDataUtils.encodeERC721AssetData(makerTokenAddress.toLowerCase(), new BigNumber(1)),
-    takerAssetData: assetDataUtils.encodeERC20AssetData(WETH9.toLowerCase()),
+    takerAssetData: assetDataUtils.encodeERC20AssetData(etherTokenAddress.toLowerCase()),
     makerFee: ZERO,
     takerFee: ZERO,
   }
@@ -88,7 +88,7 @@ async function createSignedOrder(maker, makerTokenAddress, makerTokenId) {
 async function trade(signedOrder, taker) {
   // Allow the 0x ERC20 Proxy to move WETH on behalf of takerAccount
   const takerWETHApprovalTxHash = await erc20TokenWrapper.setUnlimitedProxyAllowanceAsync(
-      WETH9.toLowerCase(),
+      etherTokenAddress.toLowerCase(),
       taker.toLowerCase()
   );
   await web3Wrapper.awaitTransactionSuccessAsync(takerWETHApprovalTxHash);
