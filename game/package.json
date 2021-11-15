@@ -1,6 +1,9 @@
 {
   "name": "battle-system",
   "version": "1.0.0",
+  "scripts": {
+    "build": "npx parcel build index.html"
+  },
   "browserslist": [
     "> 5%"
   ],
