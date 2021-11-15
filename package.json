@@ -6,7 +6,8 @@
     "hardhat": "^2.6.8"
   },
   "scripts": {
-    "start": "node game/server/index"
+    "heroku-postbuild": "cd ./client && npm i && npm run build",
+    "start": "cd ./client && npm run start"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
