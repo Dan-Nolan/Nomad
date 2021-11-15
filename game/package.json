@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "heroku-postbuild": "cd ./client && npx parcel build index.html",
-    "start": "node ./server/index"
+    "start": "node game/server/index"
   },
   "browserslist": [
     "> 5%"
