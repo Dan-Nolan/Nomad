@@ -1,7 +1,0 @@
-!.gitignore
-.cache
-.parcel-cache
-.git
-dist
-node_modules
-.DS_Store
