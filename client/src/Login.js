@@ -55,7 +55,10 @@ function Login() {
             const hasSignPermission = Boolean(BigInt(SIGN_PERMISSION) & permissions);
 
             if(hasSignPermission) {
-                console.log("has sign permission!")
+                const signer = await provider.getSigner(0);
+                signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(() => {
+                    console.log("log in!");
+                }).catch(console.log);
             } else {
                 alert("Sign permission not found on selected address: " + ethereum.selectedAddress);
             }
