@@ -2,7 +2,10 @@
   "name": "nomad",
   "version": "1.0.0",
   "dependencies": {
+    "@erc725/smart-contracts": "^2.1.4",
+    "@lukso/lsp-factory.js": "^1.1.4",
     "@openzeppelin/contracts": "^4.3.2",
+    "dotenv": "^10.0.0",
     "hardhat": "^2.6.8"
   },
   "scripts": {
