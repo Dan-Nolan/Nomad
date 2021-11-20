@@ -1,12 +1,12 @@
+/* global BigInt */
 import { useState } from 'react';
 import "./Login.scss";
 import { ethers } from "ethers";
 
 const { ethereum } = window;
-const addressPermissionPrefix = "4b80742d0000000082ac0000";
-const getDataSelector = "4e3e6e9c";
+const ADDRESS_PERMISSION_PREFIX = "0x4b80742d0000000082ac0000";
+const SIGN_PERMISSION = 0x200;
 
-// 0x4b80742d0000000082ac0000 0x4b80742d0000000082ac000092836Fda575E13947dc7b5D5d9a0418fCf152670
 // demo profile: 0x92836Fda575E13947dc7b5D5d9a0418fCf152670
 
 function Login() {
@@ -28,18 +28,37 @@ function Login() {
     async function checkAddress(event) {
         const profileAddress = event.target.value;
         setInputValue(profileAddress);
-        if(ethers.utils.isAddress(profileAddress)) {
+        if (ethers.utils.isAddress(profileAddress)) {
             await ethereum.request({ method: 'eth_requestAccounts' });
-            const permission = addressPermissionPrefix + ethereum.selectedAddress.slice(2);
+            const permissionKey = ADDRESS_PERMISSION_PREFIX + ethereum.selectedAddress.slice(2);
 
             const provider = new ethers.providers.Web3Provider(ethereum);
-            const permissions = await provider.call({
+            const iface = new ethers.utils.Interface([
+                "function getData(bytes32[] memory _keys) view returns (bytes[] memory values)"
+            ]);
+            const calldata = iface.encodeFunctionData("getData", [
+                [permissionKey]
+            ]);
+
+            const result = await provider.call({
                 to: profileAddress,
-                data: "0x" + getDataSelector + permission
+                data: calldata
             })
-            console.log("hey");
-            console.log(permissions);
-            // console.log("address!");
+
+            const [[data]] = iface.decodeFunctionResult("getData", result);
+            if(data === "0x") {
+                alert("No profile permissions found on selected address: " + ethereum.selectedAddress);
+                return;
+            }
+            
+            const permissions = BigInt(data);
+            const hasSignPermission = Boolean(BigInt(SIGN_PERMISSION) & permissions);
+
+            if(hasSignPermission) {
+                console.log("has sign permission!")
+            } else {
+                alert("Sign permission not found on selected address: " + ethereum.selectedAddress);
+            }
         }
     }
 
