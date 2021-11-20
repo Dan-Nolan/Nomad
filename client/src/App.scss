@@ -1,0 +1,21 @@
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.content {
+    padding: 20px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    .upl {
+        display: inline-flex;
+    }
+}
