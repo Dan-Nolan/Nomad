@@ -13,12 +13,13 @@ async function main() {
 
   const signer = await hre.ethers.provider.getSigner(0);
   const address = await signer.getAddress();
-  const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
-    controllingAccounts: [address], 
-    lsp3Profile: "ipfs://QmRQyy97xxex2CmKZS6ccM8BfuZprfe8MxXXA6vKd9RJzk"
-  });
+  console.log(address);
+  // const myContracts = await lspFactory.LSP3UniversalProfile.deploy({
+  //   controllingAccounts: [address], 
+  //   lsp3Profile: "ipfs://QmRQyy97xxex2CmKZS6ccM8BfuZprfe8MxXXA6vKd9RJzk"
+  // });
 
-  console.log(myContracts.ERC725Account.address)
+  // console.log(myContracts.ERC725Account.address)
 }
 
 main()

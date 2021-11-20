@@ -1,7 +1,14 @@
+import Login from './Login';
+import Navbar from './Navbar';
+import "./App.scss";
+
 function App() {
   return (
-    <div>
-      Welcome to Nomad
+    <div className="app">
+      <Navbar />
+      <div className="content">
+        <Login />
+      </div>
     </div>
   );
 }
