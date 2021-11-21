@@ -11,6 +11,9 @@ function Navbar() {
             <div className="left">
                 Welcome to Nomad
             </div>
+            <div className="universe">
+                Alpha Universe
+            </div>
             <ProfileSection />
         </div>
     );
@@ -19,11 +22,10 @@ function Navbar() {
 function ProfileSection() {
     const { profile: [profile] } = useContext(StoreContext);
 
-    const { profileImage: [profileImage] } = profile.LSP3Profile;
-
-    const ipfsURL = IPFS_BASE + profileImage.url.slice(7);
-
     if(profile.loggedIn) {
+        const { profileImage: [profileImage] } = profile.LSP3Profile;
+        const ipfsURL = IPFS_BASE + profileImage.url.slice(7);
+
         return (
             <div className="profile">
                 <img src={ipfsURL} alt="profile" />
