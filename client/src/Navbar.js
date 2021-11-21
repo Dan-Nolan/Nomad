@@ -26,7 +26,7 @@ function ProfileSection() {
     if(profile.loggedIn) {
         return (
             <div className="profile">
-                <img src={ipfsURL} />
+                <img src={ipfsURL} alt="profile" />
             </div>
         )
     }

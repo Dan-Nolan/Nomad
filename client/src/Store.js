@@ -2,7 +2,7 @@ import React from 'react';
 
 export const StoreContext = React.createContext(null);
 
-export default ({ children }) => {
+const Store = ({ children }) => {
     const initialProfile = {
         loggedIn: false,
         metadata: null
@@ -10,13 +10,15 @@ export default ({ children }) => {
 
     const [profile, setProfile] = React.useState(initialProfile);
 
-    const store = {
+    const storeValue = {
         profile: [profile, setProfile]
     }
 
     return (
-        <StoreContext.Provider value={store}>
+        <StoreContext.Provider value={storeValue}>
             {children}
         </StoreContext.Provider>
     );
 }
+
+export default Store;

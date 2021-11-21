@@ -19,6 +19,8 @@ const config = {
     ipfsGateway: IPFS_GATEWAY,
 };
 
-export default (contractAddress) => {
+const getERC725 = (contractAddress) => {
     return new ERC725(schema, contractAddress, provider, config);
 }
+
+export default getERC725;
