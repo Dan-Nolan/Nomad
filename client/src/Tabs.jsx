@@ -1,6 +1,6 @@
 import "./Tabs.scss";
 import { useContext } from 'react';
-import { StoreContext } from "./Store";
+import { StoreContext } from "utils/Store";
 import { NavLink } from "react-router-dom";
 
 function Tabs() {

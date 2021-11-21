@@ -2,8 +2,8 @@
 import { useState, useContext } from 'react';
 import "./Login.scss";
 import { ethers } from "ethers";
-import { StoreContext } from "./Store";
-import getERC725 from './getERC725';
+import { StoreContext } from "utils/Store";
+import getERC725 from 'utils/getERC725';
 
 const { ethereum } = window;
 const ADDRESS_PERMISSION_PREFIX = "0x4b80742d0000000082ac0000";

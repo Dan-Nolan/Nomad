@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import Tabs from './Tabs';
-import Content from './Content';
+import Content from './content/Content';
 import "./App.scss";
 
 function App() {

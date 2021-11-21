@@ -1,7 +1,7 @@
 import Login from './Login';
 import "./Navbar.scss";
 import { useContext } from 'react';
-import { StoreContext } from "./Store";
+import { StoreContext } from "utils/Store";
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 

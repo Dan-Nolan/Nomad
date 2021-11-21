@@ -1,4 +1,4 @@
-import StoreProvider from './Store';
+import StoreProvider from 'utils/Store';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import './index.scss';
