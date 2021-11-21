@@ -6,11 +6,12 @@
     "@lukso/lsp-factory.js": "^1.1.4",
     "@openzeppelin/contracts": "^4.3.2",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "hardhat": "^2.6.8"
   },
   "scripts": {
-    "heroku-postbuild": "cd ./game && npm i && npm run build",
-    "start": "cd ./game && npm run start"
+    "heroku-postbuild": "cd ./client && npm i -g yarn && yarn run build",
+    "start": "node server/index"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
