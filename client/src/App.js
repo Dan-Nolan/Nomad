@@ -1,6 +1,6 @@
-import Login from './Login';
 import Navbar from './Navbar';
 import Tabs from './Tabs';
+import Content from './Content';
 import "./App.scss";
 
 function App() {
@@ -8,9 +8,7 @@ function App() {
     <div className="app">
       <Navbar />
       <Tabs />
-      <div className="content">
-        <Login />
-      </div>
+      <Content />
     </div>
   );
 }

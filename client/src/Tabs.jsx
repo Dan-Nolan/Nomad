@@ -1,21 +1,28 @@
 import "./Tabs.scss";
 import { useContext } from 'react';
 import { StoreContext } from "./Store";
+import { Link } from "react-router-dom";
 
 function Tabs() {
     const { profile: [profile] } = useContext(StoreContext);
 
-    if(profile.loggedIn) {
+    if (profile.loggedIn) {
         return (
             <div className="tabs">
                 <div className="tab">
-                    Inventory
+                    <Link to="/">
+                        Inventory
+                    </Link>
                 </div>
                 <div className="tab">
-                    Proposals
+                    <Link to="/proposals">
+                        Proposals
+                    </Link>
                 </div>
                 <div className="tab">
-                    Integrations
+                    <Link to="/integrations">
+                        Integrations
+                    </Link>
                 </div>
             </div>
         )

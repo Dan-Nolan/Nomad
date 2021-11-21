@@ -5,5 +5,9 @@
     .tab {
         padding: 20px;
         text-transform: uppercase;
+        a {
+            text-decoration: none;
+            color: black;
+        }
     }
 }
