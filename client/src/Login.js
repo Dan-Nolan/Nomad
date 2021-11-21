@@ -18,7 +18,7 @@ function Login() {
 
     const { profile: [profile, setProfile] } = useContext(StoreContext);
 
-    if(profile.loggedIn) {
+    if (profile.loggedIn) {
         return null;
     }
 
@@ -46,19 +46,17 @@ function Login() {
             const provider = new ethers.providers.Web3Provider(ethereum);
 
             const data = await getData(provider, profileAddress, permissionKey);
-            if(data === "0x") {
+            if (data === "0x") {
                 alert("No profile permissions found on selected address: " + ethereum.selectedAddress);
                 return;
             }
 
-            console.log("get profile", await getData(provider, profileAddress, LSP3_PROFILE_KEY));
-    
             const hasSignPermission = Boolean(BigInt(SIGN_PERMISSION) & BigInt(data));
 
-            if(hasSignPermission) {
+            if (hasSignPermission) {
                 const signer = await provider.getSigner(0);
                 signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(async () => {
-                    const {LSP3Profile: { LSP3Profile }} = await erc725.fetchData("LSP3Profile");
+                    const { LSP3Profile: { LSP3Profile } } = await erc725.fetchData("LSP3Profile");
                     setProfile({ loggedIn: true, LSP3Profile });
                 }).catch(console.log);
             } else {

@@ -2,6 +2,9 @@ import Login from 'Login';
 import { useContext } from 'react';
 import { StoreContext } from "utils/Store";
 import { Routes, Route } from "react-router-dom";
+import Integrations from "./Integrations";
+import Proposals from "./Proposals";
+import Inventory from "./Inventory";
 import "./Content.scss";
 
 function Content() {
@@ -23,24 +26,6 @@ function Content() {
         <div className="content">
             <Login />
         </div>
-    );
-}
-
-function Inventory() {
-    return (
-        <div>Inventory</div>
-    );
-}
-
-function Proposals() {
-    return (
-        <div>Proposals</div>
-    );
-}
-
-function Integrations() {
-    return (
-        <div>Integrations</div>
     );
 }
 
