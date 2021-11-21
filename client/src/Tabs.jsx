@@ -1,7 +1,7 @@
 import "./Tabs.scss";
 import { useContext } from 'react';
 import { StoreContext } from "./Store";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Tabs() {
     const { profile: [profile] } = useContext(StoreContext);
@@ -10,19 +10,19 @@ function Tabs() {
         return (
             <div className="tabs">
                 <div className="tab">
-                    <Link to="/">
+                    <NavLink to="/" activeClassName="active">
                         Inventory
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="tab">
-                    <Link to="/proposals">
+                    <NavLink to="/proposals" activeClassName="active">
                         Proposals
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="tab">
-                    <Link to="/integrations">
+                    <NavLink to="/integrations" activeClassName="active">
                         Integrations
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
         )
