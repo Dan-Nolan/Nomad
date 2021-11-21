@@ -3,6 +3,15 @@ import "./Integrations.scss";
 function Integrations() {
     return (
         <div className="integrations">
+            <div className="content-header">
+                <div className="universe">
+                    Alpha Universe
+                </div>
+                <h1>
+                    Integrations
+                </h1>
+            </div>
+
             <div className="integration">
                 <div className="display-image">
 

@@ -10,4 +10,17 @@
     .upl {
         display: inline-flex;
     }
+
+    .content-header {
+        margin: 40px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #bbb;
+
+        h1 {
+            margin: 5px 0;
+            color: black;
+        }
+    }
 }

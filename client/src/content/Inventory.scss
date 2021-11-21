@@ -1,0 +1,38 @@
+.content > .inventory {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+
+    .profile-header {
+        display: flex;
+        margin: 30px 0;
+
+        img {
+            height: 60px;
+            width: 60px;
+            border-radius: 60px;
+            margin: 0 18px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+
+            .tag {
+                display: flex;
+                .name {
+                    color: black;
+                    font-weight: bold;
+                }
+                .num {
+                    color: #bbb;
+                }
+            }
+
+            h1 {
+                margin: 5px 0;
+            }
+        }
+    }
+}
