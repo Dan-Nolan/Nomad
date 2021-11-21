@@ -18,14 +18,8 @@ function Login() {
 
     const { profile: [profile, setProfile] } = useContext(StoreContext);
 
-    console.log({ profile, setProfile });
-
     if(profile.loggedIn) {
-        return (
-            <div className="profile">
-                { JSON.stringify(profile) }
-            </div>
-        )
+        return null;
     }
 
     if (inputMode) {
