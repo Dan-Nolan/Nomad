@@ -1,10 +1,12 @@
 /* global BigInt */
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import "./Login.scss";
 import { ethers } from "ethers";
+import { StoreContext } from "./Store";
 
 const { ethereum } = window;
 const ADDRESS_PERMISSION_PREFIX = "0x4b80742d0000000082ac0000";
+const LSP3_PROFILE_KEY = "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5";
 const SIGN_PERMISSION = 0x200;
 
 // demo profile: 0x92836Fda575E13947dc7b5D5d9a0418fCf152670
@@ -12,6 +14,10 @@ const SIGN_PERMISSION = 0x200;
 function Login() {
     const [inputMode, setInputMode] = useState(false);
     const [inputValue, setInputValue] = useState("");
+
+    const { profile: [profile, setProfile] } = useContext(StoreContext);
+
+    console.log({ profile, setProfile });
 
     if (inputMode) {
         return (
@@ -33,31 +39,21 @@ function Login() {
             const permissionKey = ADDRESS_PERMISSION_PREFIX + ethereum.selectedAddress.slice(2);
 
             const provider = new ethers.providers.Web3Provider(ethereum);
-            const iface = new ethers.utils.Interface([
-                "function getData(bytes32[] memory _keys) view returns (bytes[] memory values)"
-            ]);
-            const calldata = iface.encodeFunctionData("getData", [
-                [permissionKey]
-            ]);
 
-            const result = await provider.call({
-                to: profileAddress,
-                data: calldata
-            })
-
-            const [[data]] = iface.decodeFunctionResult("getData", result);
+            const data = await getData(provider, profileAddress, permissionKey);
             if(data === "0x") {
                 alert("No profile permissions found on selected address: " + ethereum.selectedAddress);
                 return;
             }
-            
-            const permissions = BigInt(data);
-            const hasSignPermission = Boolean(BigInt(SIGN_PERMISSION) & permissions);
+
+            console.log("get profile", await getData(provider, profileAddress, LSP3_PROFILE_KEY));
+    
+            const hasSignPermission = Boolean(BigInt(SIGN_PERMISSION) & BigInt(data));
 
             if(hasSignPermission) {
                 const signer = await provider.getSigner(0);
-                signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(() => {
-                    console.log("log in!");
+                signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(async () => {
+                    setProfile({ loggedIn: true });
                 }).catch(console.log);
             } else {
                 alert("Sign permission not found on selected address: " + ethereum.selectedAddress);
@@ -70,6 +66,24 @@ function Login() {
             Universal Profile Login
         </div>
     );
+}
+
+const iface = new ethers.utils.Interface([
+    "function getData(bytes32[] memory _keys) view returns (bytes[] memory values)"
+]);
+
+async function getData(provider, profileAddress, key) {
+    const calldata = iface.encodeFunctionData("getData", [
+        [key]
+    ]);
+
+    const result = await provider.call({
+        to: profileAddress,
+        data: calldata
+    })
+
+    const [[data]] = iface.decodeFunctionResult("getData", result);
+    return data;
 }
 
 export default Login;
