@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    width: 100%;
+    align-items: center;
 
     .profile-header {
         display: flex;
@@ -32,6 +34,31 @@
 
             h1 {
                 margin: 5px 0;
+            }
+        }
+    }
+
+    .items {
+        width: 1200px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        // negate the item margin-top
+        margin-top: -10px;
+        .item {
+            background-color: white;
+            margin: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            
+            .display-image {
+                height: 200px;
+                width: 300px;
+            }
+
+            .info {
+                padding: 15px 30px;
             }
         }
     }
