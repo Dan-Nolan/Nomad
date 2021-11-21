@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import "./Login.scss";
 import { ethers } from "ethers";
 import { StoreContext } from "./Store";
+import getERC725 from './getERC725';
 
 const { ethereum } = window;
 const ADDRESS_PERMISSION_PREFIX = "0x4b80742d0000000082ac0000";
@@ -18,6 +19,14 @@ function Login() {
     const { profile: [profile, setProfile] } = useContext(StoreContext);
 
     console.log({ profile, setProfile });
+
+    if(profile.loggedIn) {
+        return (
+            <div className="profile">
+                { JSON.stringify(profile) }
+            </div>
+        )
+    }
 
     if (inputMode) {
         return (
@@ -38,6 +47,8 @@ function Login() {
             await ethereum.request({ method: 'eth_requestAccounts' });
             const permissionKey = ADDRESS_PERMISSION_PREFIX + ethereum.selectedAddress.slice(2);
 
+            const erc725 = await getERC725(profileAddress, ethereum.selectedAddress);
+
             const provider = new ethers.providers.Web3Provider(ethereum);
 
             const data = await getData(provider, profileAddress, permissionKey);
@@ -53,7 +64,8 @@ function Login() {
             if(hasSignPermission) {
                 const signer = await provider.getSigner(0);
                 signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(async () => {
-                    setProfile({ loggedIn: true });
+                    const {LSP3Profile: { LSP3Profile }} = await erc725.fetchData("LSP3Profile");
+                    setProfile({ loggedIn: true, LSP3Profile });
                 }).catch(console.log);
             } else {
                 alert("Sign permission not found on selected address: " + ethereum.selectedAddress);
