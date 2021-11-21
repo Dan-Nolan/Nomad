@@ -1,0 +1,83 @@
+.content > .proposals-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+
+
+    .proposals {
+        background-color: white;
+        width: 800px;
+        padding: 20px;
+
+        .header {
+            display: flex;
+
+            .number {
+                font-size: 2em;
+                font-weight: bold;
+                flex-grow: 1;
+            }
+    
+            .create-proposal {
+                padding: 10px 20px;
+                text-transform: uppercase;
+                border-radius: 10px;
+                text-align: center;
+                background-color: black;
+                color: white;
+            }
+        }
+
+        .proposal {
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+
+            > .title {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #ccc;
+                padding: 5px 0;
+                .display {
+                    font-weight: bold;
+                }
+                .state {
+                    font-size: .8em;
+                    text-transform: uppercase;
+                    margin-left: 5px;
+                    background-color: pink;
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+            }
+
+            .proposal-info {
+                display: flex;
+                .attributes {
+                    flex-grow: 1;
+                    display: flex;
+                    .attribute {
+                        flex-grow: 1;
+                        > .title {
+                            font-size: .8em;
+                            text-transform: uppercase;
+                            color: #aaa;
+                        }
+                        > .value {
+                            font-weight: bold;
+                            font-size: 1.1em;
+                        }
+                    }
+                }
+                .votes {
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
