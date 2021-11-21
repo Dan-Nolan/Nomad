@@ -1,0 +1,42 @@
+.integrations {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    .integration {
+        display: flex;
+        width: 800px;
+        background-color: white;
+        border-radius: 5px;
+
+        .display-image {
+            flex-grow: 1;
+        }
+
+        .info {
+            padding: 20px 40px;
+            .inventory, .proposals {
+                padding: 10px 20px;
+                text-transform: uppercase;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            p {
+                margin: 10px 0 30px;
+            }
+
+            .inventory {
+                background-color: black;
+                color: white;
+                margin: 10px 0;
+            }
+
+            .proposals {
+                border: 2px solid #bbb;
+                color: #bbb;
+                margin: 10px 0;
+            }
+        }
+    }
+}

@@ -7,7 +7,6 @@ import getERC725 from 'utils/getERC725';
 
 const { ethereum } = window;
 const ADDRESS_PERMISSION_PREFIX = "0x4b80742d0000000082ac0000";
-const LSP3_PROFILE_KEY = "0x5ef83ad9559033e6e941db7d7c495acdce616347d28e90c7ce47cbfcfcad3bc5";
 const SIGN_PERMISSION = 0x200;
 
 // demo profile: 0x92836Fda575E13947dc7b5D5d9a0418fCf152670
