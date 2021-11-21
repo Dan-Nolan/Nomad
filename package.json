@@ -10,7 +10,7 @@
     "hardhat": "^2.6.8"
   },
   "scripts": {
-    "heroku-postbuild": "npm i react-scripts yarn -g && cd ./client && yarn run build",
+    "heroku-postbuild": "npm i react-scripts yarn -g && cd ./client && yarn install && yarn run build",
     "start": "node server/index"
   },
   "devDependencies": {
