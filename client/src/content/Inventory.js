@@ -91,6 +91,9 @@ function Inventory() {
                                     <img src={game} alt={name + " game"} />
                                 </div>
                             </div>
+                            <div className="transfer-nft">
+                                Transfer NFT
+                            </div>
                         </div>
                     ))}
                 </div>

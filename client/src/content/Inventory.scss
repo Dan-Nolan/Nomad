@@ -67,6 +67,18 @@
             .info {
                 padding: 15px 30px;
                 display: flex;
+
+                .identifying {
+                    .header {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+
+                    .token-id {
+                        font-size: 14px;
+                        opacity: 0.4;
+                    }
+                }
                 
                 .game {
                     display: flex;
@@ -77,6 +89,23 @@
                         height: 44px;
                         width: 44px;
                     }
+                }
+            }
+            .transfer-nft {
+                border: 1px solid #dbdbdb;
+                color: #676769;
+                background-color: #F2F2F2;
+                font-size: 12px;
+                padding: 10px 4px;
+                margin: 10px 20px 20px;
+                text-align: center;
+                border-radius: 9px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+
+                &:hover {
+                    cursor: pointer;
                 }
             }
         }
