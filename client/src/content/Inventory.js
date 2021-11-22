@@ -50,7 +50,8 @@ function Inventory() {
     const { profile: [profile] } = useContext(StoreContext);
 
     if (profile.loggedIn) {
-        const { name, profileImage: [profileImage] } = profile.LSP3Profile;
+        const { address, LSP3Profile } = profile;
+        const { name, profileImage: [profileImage] } = LSP3Profile;
         const ipfsURL = IPFS_BASE + profileImage.url.slice(7);
 
         return (
@@ -63,7 +64,7 @@ function Inventory() {
                                 @{name}
                             </div>
                             <div className="num">
-                                #6498
+                                #{address.slice(2,6)}
                             </div>
                         </div>
                         <h1>

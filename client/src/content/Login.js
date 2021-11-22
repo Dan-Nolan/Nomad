@@ -21,9 +21,8 @@ function Login() {
         return null;
     }
 
-    async function checkAddress(event) {
-        const profileAddress = event.target.value;
-        setInputValue(profileAddress);
+    async function checkAddress() {
+        const profileAddress = inputValue;
         if (ethers.utils.isAddress(profileAddress)) {
             await ethereum.request({ method: 'eth_requestAccounts' });
             const permissionKey = ADDRESS_PERMISSION_PREFIX + ethereum.selectedAddress.slice(2);
@@ -44,7 +43,7 @@ function Login() {
                 const signer = await provider.getSigner(0);
                 signer.signMessage("Verify your account on Nomad to use your Universal Profile").then(async () => {
                     const { LSP3Profile: { LSP3Profile } } = await erc725.fetchData("LSP3Profile");
-                    const newProfile = { loggedIn: true, LSP3Profile }
+                    const newProfile = { loggedIn: true, address: profileAddress, LSP3Profile }
                     setProfile(newProfile);
                     accountUtil.setProfile(newProfile);
                 }).catch(console.log);
@@ -61,7 +60,7 @@ function Login() {
                 type="text"
                 value={inputValue}
                 className="upl-input"
-                onChange={checkAddress}
+                onChange={(event) => setInputValue(event.target.value)}
                 placeholder="Enter Profile Address..." />
             <div className="upl-enter" onClick={checkAddress}>
                 Enter
