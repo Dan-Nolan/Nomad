@@ -1,4 +1,4 @@
-import Navbar from './Navbar';
+import Navbar from './nav/Navbar';
 import Tabs from './Tabs';
 import Content from './content/Content';
 import "./App.scss";

@@ -1,8 +1,11 @@
 .upl, .upl-input {
-    font-size: 1.2em;
-    border: 1px solid black;
-    padding: 7px 20px;
-    border-radius: 5px;
+    font-size: .8em;
+    padding: 12px 25px;
+    border-radius: 30px;
     cursor: pointer;
-    width: 220px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background-image: linear-gradient(102deg,#f38b90,#6199ff);
 }
