@@ -8,10 +8,23 @@ const proposals = [{
     votesAgainst: "7.4K",
     state: "active",
 }, {
+    title: "Export Tax to 0.2%",
+    type: "Contract Change",
+    created: "11/4/2021",
+    votesFor: "15.1K",
+    votesAgainst: "14.2K",
+    state: "pending"
+}, {
+    title: "Town Square Grant",
+    type: "Token Distribution",
+    created: "11/1/2021",
+    votesFor: "44.2",
+    votesAgainst: "6.2K",
+    state: "queued"
+}, {
     title: "Adds Stardew Valley",
     type: "New Integration",
     created: "10/19/2021",
-    game: "Stardew Valley",
     votesFor: "51.4K",
     votesAgainst: "2.2K",
     state: "executed"
@@ -41,11 +54,12 @@ function Proposals() {
                 </div>
 
                 {proposals.map(({ title, type, created, votesFor, votesAgainst, state }) => {
+                    const stateClasses = ["state", state];
                     return (
                         <div className="proposal">
                             <div className="title">
                                 <div className="display">{title}</div>
-                                <div className="state">{state}</div>
+                                <div className={stateClasses.join(" ")}>{state}</div>
                             </div>
                             <div className="proposal-info">
                                 <div className="attributes">
@@ -66,8 +80,9 @@ function Proposals() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="attributes votes">
-                                    <div className="attribute">
+                                <div className="spacer"></div>
+                                <div className="votes">
+                                    <div className="vote for">
                                         <div className="title">
                                             Votes For:
                                         </div>
@@ -75,7 +90,7 @@ function Proposals() {
                                             { votesFor }
                                         </div>
                                     </div>
-                                    <div className="attribute">
+                                    <div className="vote against">
                                         <div className="title">
                                             Votes Against:
                                         </div>

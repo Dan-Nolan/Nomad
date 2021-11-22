@@ -9,60 +9,91 @@
 
     .proposals {
         background-color: white;
-        width: 800px;
-        padding: 20px;
+        box-shadow: 3px 4px 5px 0px rgba(0, 4, 15, 0.05);
+        width: 1040px;
+        border-radius: 10px;
+        padding: 20px 30px;
 
         .header {
             display: flex;
+            margin: 10px 0 20px;
 
             .number {
-                font-size: 2em;
+                font-size: 24px;
                 font-weight: bold;
                 flex-grow: 1;
             }
     
             .create-proposal {
-                padding: 10px 20px;
+                padding: 0 40px;
+                height: 36px;
+                letter-spacing: 2px;
+                line-height: 36px;
                 text-transform: uppercase;
-                border-radius: 10px;
+                border-radius: 36px;
                 text-align: center;
-                background-color: black;
+                background-color: #383A3D;
                 color: white;
+                font-size: 11px;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
         }
 
         .proposal {
-            background-color: #eee;
+            background-color: #fbfcfd;
             border-radius: 5px;
             padding: 5px 10px;
-            margin: 10px;
-            border: 1px solid #ccc;
+            margin: 30px 0;
+            border: 1px solid #dbdbdb;
+            color: #43484A;
 
             > .title {
                 display: flex;
                 align-items: center;
-                border-bottom: 1px solid #ccc;
-                padding: 5px 0;
+                border-bottom: 1px solid #dbdbdb;
+                padding: 12px 10px;
                 .display {
                     font-weight: bold;
                 }
                 .state {
-                    font-size: .8em;
+                    height: 22px;
+                    line-height: 22px;
+                    padding: 0 15px;
+                    font-size: 11px;
+                    font-weight: bold;
                     text-transform: uppercase;
-                    margin-left: 5px;
-                    background-color: pink;
+                    margin-left: 8px;
                     border-radius: 5px;
-                    padding: 3px;
+                    &.active {
+                        background-color: #e7ecf7;
+                        color: #20579a;
+                    }
+                    &.pending {
+                        background-color: #f3eec6;
+                        color: #918c00;
+                    }
+                    &.queued {
+                        background-color: #fae6cd;
+                        color: #9a6520;
+                    }
+                    &.executed {
+                        background-color: #e2f4e7;
+                        color: #099055;
+                    }
                 }
             }
 
             .proposal-info {
                 display: flex;
                 .attributes {
-                    flex-grow: 1;
                     display: flex;
                     .attribute {
                         flex-grow: 1;
+                        margin: 20px 10px;
+                        min-width: 200px;
                         > .title {
                             font-size: .8em;
                             text-transform: uppercase;
@@ -74,8 +105,32 @@
                         }
                     }
                 }
+                .spacer {
+                    flex-grow: 1;
+                }
                 .votes {
-                    width: 150px;
+                    align-self: flex-end;
+                    display: flex;
+                    .vote {
+                        width: 120px;
+                        flex-grow: 1;
+                        margin: 20px 10px;
+                        > .title {
+                            font-size: .8em;
+                            text-transform: uppercase;
+                            color: #aaa;
+                        }
+                        > .value {
+                            font-weight: bold;
+                            font-size: 1.1em;
+                        }
+                        &.for {
+                            color: #26906c;
+                        }
+                        &.against {
+                            color: #c75a62;
+                        }
+                    }
                 }
             }
         }
