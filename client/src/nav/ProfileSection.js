@@ -1,12 +1,18 @@
 import Login from './UPLogin';
 import { useContext } from 'react';
 import { StoreContext } from "utils/Store";
+import * as accountUtil from 'utils/accountUtil';
 import "./ProfileSection.scss";
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 
 function ProfileSection() {
-    const { profile: [profile] } = useContext(StoreContext);
+    const { profile: [profile, setProfile] } = useContext(StoreContext);
+
+    function logout() {
+        accountUtil.logout();
+        setProfile({ loggedIn: false });
+    }
 
     if(profile.loggedIn) {
         const { profileImage: [profileImage] } = profile.LSP3Profile;
@@ -18,7 +24,7 @@ function ProfileSection() {
                 <div className="tokens">
                     0 $NMDA
                 </div>
-                <div className="logout">
+                <div className="logout" onClick={logout}>
                     Log Out
                 </div>
             </div>

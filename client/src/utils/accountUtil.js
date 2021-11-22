@@ -24,7 +24,6 @@ export const removeProfile = () => {
 }
 
 export const setProfile = (profile) => {
-    console.log("hey")
     jsCookie.set(PROFILE_KEY, JSON.stringify(profile), { expires: 365, path: '/', domain: COOKIE_DOMAIN });
 }
 
