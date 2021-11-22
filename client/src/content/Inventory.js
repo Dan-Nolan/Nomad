@@ -7,30 +7,39 @@ import quarter from "images/nft-quarter-pacman.jpg";
 import shoes from "images/nft-shoes-townsquare.jpg";
 import sneakers from "images/nft-sneakers-townsquare.jpg";
 import sword from "images/nft-sword-kingdom.jpg";
+import kingdom from "images/kingdom-square-logo.jpg";
+import pacman from "images/pacman-square-logo.jpg";
+import townsquare from "images/townsquare-square-logo.jpg";
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 
 const items = [{
+    game: kingdom,
     img: bow,
     name: "Bow + Arrow",
     id: 4156
 }, {
+    game: kingdom,
     img: sword,
     name: "Sword",
     id: 4237
 }, {
+    game: kingdom,
     img: potion,
     name: "Health Potion",
     id: 4684
 }, {
+    game: pacman,
     img: quarter,
     name: "Extra Life Quarter",
     id: 4321
 }, {
+    game: townsquare,
     img: sneakers,
     name: "Air Jordan 4 Fire Red",
     id: 1379
 }, {
+    game: townsquare,
     img: shoes,
     name: "MIX'AIR X RN",
     id: 9433
@@ -64,18 +73,22 @@ function Inventory() {
                 </div>
 
                 <div className="items">
-
-                    {items.map(({ name, id, img }) => (
+                    {items.map(({ name, id, img, game }) => (
                         <div className="item">
                             <div className="display-image">
                                 <img src={img} alt={name} />
                             </div>
                             <div className="info">
-                                <div className="header">
-                                    {name}
+                                <div className="identifying">
+                                    <div className="header">
+                                        {name}
+                                    </div>
+                                    <div className="token-id">
+                                        ID: #{id}
+                                    </div>
                                 </div>
-                                <div className="token-id">
-                                    ID: #{id}
+                                <div className="game">
+                                    <img src={game} alt={name + " game"} />
                                 </div>
                             </div>
                         </div>
