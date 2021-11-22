@@ -1,18 +1,34 @@
 .tabs {
     display: flex;
     justify-content: center;
+    min-height: 68px;
+    background-color: white;
+    border-bottom: 1px solid #cacdd2;
+    align-items: center;
 
     .tab {
         a {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #2a2c2e;
+            opacity: 0.5;
             display: block;
-            padding: 20px;
             text-transform: uppercase;
             text-decoration: none;
             color: black;
+            padding: 8px 15px;
+            margin: 0 8px;
+            border-radius: 20px;
+
+            &:hover {
+                opacity: .7;
+                background-color: #eaecef;
+            }
 
             &.active {
-                color: pink;
-                border-bottom: 2px solid pink;
+                background-color: #c75a62;
+                opacity: 1;
+                color: white;
             }
         }
     }

@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     position: relative;
-    height: 80px;
+    min-height: 80px;
     align-items:center;
     box-shadow: 3px 4px 5px 0px rgba(0, 4, 15, 0.05);
 
@@ -12,14 +12,6 @@
             margin-left: 40px;
             height: 36px;
         }
-    }
-
-    .universe {
-        position: absolute;
-        top: 50%; 
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-transform: uppercase;
     }
 
     .profile {
