@@ -18,7 +18,7 @@ const proposals = [{
     title: "Town Square Grant",
     type: "Token Distribution",
     created: "11/1/2021",
-    votesFor: "44.2",
+    votesFor: "44.2K",
     votesAgainst: "6.2K",
     state: "queued"
 }, {
