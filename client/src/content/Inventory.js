@@ -1,8 +1,41 @@
 import "./Inventory.scss";
 import { useContext } from 'react';
 import { StoreContext } from "utils/Store";
+import bow from "images/nft-bow-kingdom.jpg";
+import potion from "images/nft-potion-kingdom.jpg";
+import quarter from "images/nft-quarter-pacman.jpg";
+import shoes from "images/nft-shoes-townsquare.jpg";
+import sneakers from "images/nft-sneakers-townsquare.jpg";
+import sword from "images/nft-sword-kingdom.jpg";
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
+
+const items = [{
+    img: bow,
+    name: "Bow + Arrow",
+    id: 4156
+}, {
+    img: sword,
+    name: "Sword",
+    id: 4237
+}, {
+    img: potion,
+    name: "Health Potion",
+    id: 4684
+}, {
+    img: quarter,
+    name: "Extra Life Quarter",
+    id: 4321
+}, {
+    img: sneakers,
+    name: "Air Jordan 4 Fire Red",
+    id: 1379
+}, {
+    img: shoes,
+    name: "MIX'AIR X RN",
+    id: 9433
+}];
+
 
 function Inventory() {
     const { profile: [profile] } = useContext(StoreContext);
@@ -31,61 +64,22 @@ function Inventory() {
                 </div>
 
                 <div className="items">
-                    <div className="item">
-                        <div className="display-image">
 
-                        </div>
-                        <div className="info">
-                            <div className="header">
-                                Bow + Arrow
+                    {items.map(({ name, id, img }) => (
+                        <div className="item">
+                            <div className="display-image">
+                                <img src={img} alt={name} />
                             </div>
-                            <div className="token-id">
-                                ID: #4156
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="item">
-                        <div className="display-image">
-
-                        </div>
-                        <div className="info">
-                            <div className="header">
-                                Health Potion
-                            </div>
-                            <div className="token-id">
-                                ID: #4884
+                            <div className="info">
+                                <div className="header">
+                                    {name}
+                                </div>
+                                <div className="token-id">
+                                    ID: #{id}
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="item">
-                        <div className="display-image">
-
-                        </div>
-                        <div className="info">
-                            <div className="header">
-                                Extra Life Quarter
-                            </div>
-                            <div className="token-id">
-                                ID: #4321
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="item">
-                        <div className="display-image">
-
-                        </div>
-                        <div className="info">
-                            <div className="header">
-                                Air Jordan 4 Fire Red
-                            </div>
-                            <div className="token-id">
-                                ID: #1379
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         );

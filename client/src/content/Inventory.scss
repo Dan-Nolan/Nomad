@@ -47,14 +47,21 @@
         margin-top: -10px;
         .item {
             background-color: white;
+            box-shadow: 3px 4px 5px 0px rgba(0, 4, 15, 0.05);
             margin: 10px 20px;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             
             .display-image {
-                height: 200px;
-                width: 300px;
+                border-radius: 10px;
+                width: 290px;
+                img {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    height: 100%;
+                    width: 100%;
+                }
             }
 
             .info {

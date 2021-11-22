@@ -15,6 +15,12 @@ function ProfileSection() {
         return (
             <div className="profile">
                 <img src={ipfsURL} alt="profile" />
+                <div className="tokens">
+                    0 $NMDA
+                </div>
+                <div className="logout">
+                    Log Out
+                </div>
             </div>
         )
     }
