@@ -1,10 +1,10 @@
-import Login from 'Login';
 import { useContext } from 'react';
 import { StoreContext } from "utils/Store";
 import { Routes, Route } from "react-router-dom";
 import Integrations from "./Integrations";
 import Proposals from "./Proposals";
 import Inventory from "./Inventory";
+import LoginCard from './LoginCard';
 import "./Content.scss";
 
 function Content() {
@@ -24,7 +24,7 @@ function Content() {
 
     return (
         <div className="content">
-            <Login />
+            <LoginCard />
         </div>
     );
 }
