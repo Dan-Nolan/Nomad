@@ -5,16 +5,21 @@
     height: 100%;
     .integration {
         display: flex;
-        width: 800px;
+        width: 1040px;
         background-color: white;
-        border-radius: 5px;
+        border-radius: 10px;
+        box-shadow: 3px 4px 5px 0px rgba(0, 4, 15, 0.05);
+        margin: 0 0 40px;
 
-        .display-image {
-            flex-grow: 1;
+        img {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            width: 535px;
         }
 
         .info {
             padding: 20px 40px;
+            flex-grow: 1;
             .inventory, .proposals {
                 padding: 10px 20px;
                 text-transform: uppercase;
