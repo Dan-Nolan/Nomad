@@ -12,25 +12,12 @@ const SIGN_PERMISSION = 0x200;
 // demo profile: 0x92836Fda575E13947dc7b5D5d9a0418fCf152670
 
 function Login() {
-    const [inputMode, setInputMode] = useState(false);
     const [inputValue, setInputValue] = useState("");
 
     const { profile: [profile, setProfile] } = useContext(StoreContext);
 
     if (profile.loggedIn) {
         return null;
-    }
-
-    if (inputMode) {
-        return (
-            <input
-                autoFocus
-                type="text"
-                value={inputValue}
-                className="upl-input"
-                onChange={checkAddress}
-                placeholder="Enter Profile Address..." />
-        )
     }
 
     async function checkAddress(event) {
@@ -65,8 +52,17 @@ function Login() {
     }
 
     return (
-        <div className="upl" onClick={() => setInputMode(true)}>
-            Universal Profile Login
+        <div className="upl-form">
+            <input
+                autoFocus
+                type="text"
+                value={inputValue}
+                className="upl-input"
+                onChange={checkAddress}
+                placeholder="Enter Profile Address..." />
+            <div className="upl-enter" onClick={checkAddress}>
+                Enter
+            </div>
         </div>
     );
 }

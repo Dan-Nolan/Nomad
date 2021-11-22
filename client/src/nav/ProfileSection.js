@@ -1,4 +1,4 @@
-import Login from '../Login';
+import Login from './UPLogin';
 import { useContext } from 'react';
 import { StoreContext } from "utils/Store";
 import "./ProfileSection.scss";

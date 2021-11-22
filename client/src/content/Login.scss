@@ -1,0 +1,29 @@
+.upl-form {
+    display: flex;
+    font-size: 18px;
+    margin: 20px 0;
+
+    .upl-input {
+        height: 50px;
+        padding: 0px 30px;
+        width: 220px;
+        background-color: white;
+        color: #2a2c2e;
+        border: 1px solid #999999;
+        border-radius: 30px;
+    }
+
+    .upl-enter {
+        padding: 0px 25px;
+        line-height: 50px;
+        margin-left: 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 15px;
+        letter-spacing: 3px;
+        background-image: linear-gradient(102deg,#f38b90,#6199ff);
+    }
+}

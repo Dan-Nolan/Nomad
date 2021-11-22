@@ -1,4 +1,4 @@
-import Login from 'Login';
+import Login from './Login';
 import icon from "images/nomad-icon-login@2x.png";
 import "./LoginCard.scss";
 
