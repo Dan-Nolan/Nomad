@@ -1,14 +1,16 @@
 import React from 'react';
+import { getProfile, hasProfile } from "./accountUtil";
 
 export const StoreContext = React.createContext(null);
 
-const Store = ({ children }) => {
-    const initialProfile = {
-        loggedIn: false,
-        metadata: null
-    }
+const INITIAL_STATE = {
+    loggedIn: false
+}
 
-    const [profile, setProfile] = React.useState(initialProfile);
+const Store = ({ children }) => {
+    const currentProfile = hasProfile() ? getProfile() : INITIAL_STATE;
+
+    const [profile, setProfile] = React.useState(currentProfile);
 
     const storeValue = {
         profile: [profile, setProfile]
