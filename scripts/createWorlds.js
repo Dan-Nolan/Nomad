@@ -1,4 +1,4 @@
-const nomadAddress = "0xa0687B0d5C66C46260B448AAd68555c13e46D160";
+const nomadAddress = "0x0A48c6EE52c23a68D1cd9205333B21D0D2E5abA2";
 const universeId = 0;
 
 async function main() {

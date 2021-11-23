@@ -19,6 +19,7 @@ contract Nomad {
     }
 
     struct Resource {
+        bool initialized; 
         uint worldId;
     }
 
@@ -41,7 +42,7 @@ contract Nomad {
 
     function addResource(address resource, uint universeId, uint worldId) external {
         require(msg.sender == universes[universeId].governor);
-        universes[universeId].resources[resource] = Resource(worldId);
+        universes[universeId].resources[resource] = Resource(true, worldId);
     }
 
     function getResource(uint universeId, address resource) external view returns(Resource memory) {
