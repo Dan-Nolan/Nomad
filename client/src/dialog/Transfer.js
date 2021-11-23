@@ -1,15 +1,15 @@
 import "./Transfer.scss";
 import { StoreContext } from "utils/Store";
 import { useState, useContext } from 'react';
-import kingdom from "images/kingdom-image.jpg";
-import townsquare from "images/townsquare-image.jpg";
+import kingdom from "images/kingdom-square-logo.jpg";
+import townsquare from "images/townsquare-square-logo.jpg";
 
 function Transfer() {
     const { dialog: [dialog, setDialog] } = useContext(StoreContext);
     const { game, img, name, id, currentWorld, worldId, display } = dialog;
 
     const canTransfer = (worldId !== undefined);
-    
+
     const [transferTo, setTransferTo] = useState(currentWorld);
 
     if(display) {
@@ -49,6 +49,18 @@ function Transfer() {
 
 function TransferComponent({ dialog, transferTo, setTransferTo }) {
     const { game, currentWorld, worldId } = dialog;
+    let otherWorld = currentWorld; 
+    let otherGame = game;
+    if(worldId !== undefined) {
+        if(worldId === 0) {
+            otherGame = townsquare;
+            otherWorld = "Town Square";
+        }
+        else if(worldId === 1) {
+            otherGame = kingdom;
+            otherWorld = "The Lost Kingdom";
+        }
+    }
     return (
         <div className="transfer-component">
             <div className="transfer-input">
@@ -65,9 +77,9 @@ function TransferComponent({ dialog, transferTo, setTransferTo }) {
                 <label>Transfer To:</label>
                 <div className="field">
                     <div className="location">
-                        { currentWorld }
+                        { otherWorld }
                     </div>
-                    <img src={game} alt="game" />
+                    <img src={otherGame} alt="game" />
                 </div>
             </div>
         </div>
