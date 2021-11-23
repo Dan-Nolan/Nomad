@@ -1,14 +1,16 @@
-// Sword.sol
 // SPDX-License-Identifier: MIT
-
-import "@lukso/universalprofile-smart-contracts/contracts/LSP7DigitalAsset/LSP7DigitalAsset.sol";
-
 pragma solidity ^0.8.0;
 
-contract Sword is LSP7DigitalAsset {
-    constructor() LSP7DigitalAsset("Sword", "SWD", msg.sender, true) {}
+import "@lukso/universalprofile-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/LSP8IdentifiableDigitalAsset.sol";
 
-    function mint(address _recipient) external {
-        _mint(_recipient, 1, true, "");
+contract Sword is LSP8IdentifiableDigitalAsset {
+    uint count = 0;
+
+    constructor() LSP8IdentifiableDigitalAsset("Sword", "SWD", msg.sender) {}
+
+    function mint(address _recipient) external returns(uint _tokenId) {
+        _tokenId = count;
+        _mint(_recipient, bytes32(_tokenId), true, "");
+        count++;
     }
 }

@@ -1,6 +1,8 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
+import "@lukso/universalprofile-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol";
+
 contract Nomad {
     Universe[] public universes;
 
@@ -13,7 +15,7 @@ contract Nomad {
 
     struct World {
         string name;
-        address owner;
+        address treasury;
     }
 
     struct Resource {
@@ -26,11 +28,11 @@ contract Nomad {
         universe.governor = _governor;
     }
 
-    function createWorld(uint universeId, string calldata name, address owner) external {
+    function createWorld(uint universeId, string calldata name, address treasury) external {
         require(msg.sender == universes[universeId].governor);
         World storage world = universes[universeId].worlds.push();
         world.name = name;
-        world.owner = owner;
+        world.treasury = treasury;
     }
 
     function addResource(address resource, uint universeId, uint worldId) external {
@@ -38,12 +40,17 @@ contract Nomad {
         universes[universeId].resources[resource] = Resource(worldId);
     }
 
-    function moveResource(uint universeId, address resource, uint destinationWorldId) external {
-        // TODO: check ownership in a standardized way 
-        // reqiure(resource.isOwner(msg.sender))
+    function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable {
+        require(ILSP8IdentifiableDigitalAsset(resource).tokenOwnerOf(bytes32(tokenId)) == msg.sender, "Not the Resource Owner");
 
-        // TODO: incorporate resource tax
+        Universe storage universe = universes[universeId];
 
-        universes[universeId].resources[resource].worldId = destinationWorldId;
+        require(msg.value == universe.tax, "Must pay the universe tax");
+
+        World storage destination = universe.worlds[destinationWorldId];
+
+        payable(destination.treasury).transfer(msg.value);
+
+        universe.resources[resource].worldId = destinationWorldId;
     }
 }
