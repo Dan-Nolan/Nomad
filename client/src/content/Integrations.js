@@ -9,7 +9,13 @@ const integrations = [{
     img: kingdom,
     description: "Check out how awesome this game is. Its got really cool stuff and all that jazz",
     color: "#00511D",
-    link: ""
+    link: "https://tlk.mynomad.quest"
+}, {
+    name: "Town Square",
+    description: "Check out how awesome this game is",
+    color: "black",
+    img: townsquare,
+    link: "https://town.mynomad.quest"
 }, {
     name: "Stardew Valley",
     description: "Check out how awesome this game is",
@@ -20,11 +26,6 @@ const integrations = [{
     description: "Check out how awesome this game is",
     color: "#F60000",
     img: pacman
-}, {
-    name: "Town Square",
-    description: "Check out how awesome this game is",
-    color: "black",
-    img: townsquare
 }];
 
 function Integrations() {
@@ -39,7 +40,7 @@ function Integrations() {
                 </h1>
             </div>
 
-            {integrations.map(({ name, img, description, color }) => (
+            {integrations.map(({ name, img, description, color, link }) => (
                 <div className="integration">
                     <img src={img} alt={name} />
                     <div className="info">
@@ -47,17 +48,29 @@ function Integrations() {
                         <p>
                             {description}
                         </p>
+
                         <div className="inventory" style={{ "background-color": color }}>
                             View My Inventory
                         </div>
                         <div className="proposals">
                             Proposals
                         </div>
+
+                        <ExternalLink link={link} />
                     </div>
                 </div>
             ))}
         </div>
     );
+}
+
+function ExternalLink({ link }) {
+    if(link) {
+        return (
+            <a href={link} target="_blank">Play this Game!</a>
+        );
+    }
+    return null;
 }
 
 export default Integrations;
