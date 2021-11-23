@@ -1,4 +1,4 @@
-const swordContractAddr = "0x8faC9592942A9A00C6230489DD82Aa8733382e11";
+const swordContractAddr = "0x49Cda4f63Fe81b653007D04c49591a2096Ea39B7";
 const recipient = "0x92836Fda575E13947dc7b5D5d9a0418fCf152670";
 
 async function main() {

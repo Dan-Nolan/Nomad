@@ -2,10 +2,10 @@ const { assert } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("Nomad", function () {
-    let addr1;
+    let addr1, treasury;
     let nomad;
-    let treasury = ethers.Wallet.createRandom();
     beforeEach(async () => {
+        treasury = ethers.Wallet.createRandom();
         [addr1] = await ethers.provider.listAccounts();
         const Nomad = await ethers.getContractFactory("Nomad");
         nomad = await Nomad.deploy();
@@ -41,6 +41,12 @@ describe("Nomad", function () {
                 await nomad.moveResource(sword.address, universeId, 1, tokenId, {
                     value: tax
                 });
+            });
+
+            it("should create the resource", async () => {
+                const resource = await nomad.getResource(universeId, sword.address);
+
+                assert(resource.worldId.eq(1));
             });
 
             it("should pay the world treasury", async () => {

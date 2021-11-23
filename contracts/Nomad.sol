@@ -35,9 +35,17 @@ contract Nomad {
         world.treasury = treasury;
     }
 
+    function getWorld(uint universeId, uint worldId) external view returns(World memory) {
+        return universes[universeId].worlds[worldId];
+    }
+
     function addResource(address resource, uint universeId, uint worldId) external {
         require(msg.sender == universes[universeId].governor);
         universes[universeId].resources[resource] = Resource(worldId);
+    }
+
+    function getResource(uint universeId, address resource) external view returns(Resource memory) {
+        return universes[universeId].resources[resource];
     }
 
     function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable {
