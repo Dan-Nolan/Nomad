@@ -1,0 +1,52 @@
+.dialog {
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        background-color: black;
+        opacity: .9;
+    }
+    .transfer {
+        background-color: #fbfcfd;
+        border-radius: 25px;
+        width: 800px;
+        height: 400px;
+        z-index: 3;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+
+        .display-image img {
+            margin: 0 40px;
+            height: 300px;
+            width: 300px;
+            border-radius: 20px;
+        }
+
+        .info {
+            height: 300px;
+            width: 375px;
+            .top {
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #cccccd;
+            }
+            .title {
+                font-size: 26px;
+                font-weight: 600;
+            }
+            .token-id {
+                font-size: 12px;
+                font-weight: medium;
+                color: #2a2c2e;
+                opacity: 0.3;
+            }
+        }
+    }
+}

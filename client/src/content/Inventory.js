@@ -44,6 +44,7 @@ const INITIAL_ITEMS = [{
 
 function Inventory() {
     const { profile: [profile] } = useContext(StoreContext);
+    const { dialog: [dialog, setDialog] } = useContext(StoreContext);
 
     const [items, updateItems] = useState(INITIAL_ITEMS);
 
@@ -55,7 +56,8 @@ function Inventory() {
                     game: kingdom,
                     img: swordKingdom,
                     name: "Sword",
-                    id: 4237
+                    id: 4237,
+                    worldId,
                 }, ...items])
             }
             else if (worldId === 1) {
@@ -63,7 +65,8 @@ function Inventory() {
                     game: townsquare,
                     img: swordTown,
                     name: "Sword",
-                    id: 4237
+                    id: 4237,
+                    worldId
                 }, ...items])
             }
         })();
@@ -114,7 +117,7 @@ function Inventory() {
                                     <img src={game} alt={name + " game"} />
                                 </div>
                             </div>
-                            <div className="transfer-nft">
+                            <div className="transfer-nft" onClick={() => setDialog({ display: true, name, id, img, game })}>
                                 Transfer NFT
                             </div>
                         </div>

@@ -4,7 +4,7 @@ import { getProfile, hasProfile } from "./accountUtil";
 export const StoreContext = React.createContext(null);
 
 const INITIAL_STATE = {
-    loggedIn: false
+    loggedIn: false,
 }
 
 const Store = ({ children }) => {
@@ -12,8 +12,11 @@ const Store = ({ children }) => {
 
     const [profile, setProfile] = React.useState(currentProfile);
 
+    const [dialog, setDialog] = React.useState({ display: false });
+
     const storeValue = {
-        profile: [profile, setProfile]
+        profile: [profile, setProfile],
+        dialog: [dialog, setDialog]
     }
 
     return (
