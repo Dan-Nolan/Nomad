@@ -1,5 +1,5 @@
-const nomadAddress = "0xcFe9AA2366f5Fb67F3D8EC2a6eB48E2a5328DDF3";
-const swordContractAddr = "0xcB8bA41AC64727A850e29a9971fECdFFB87dBd00";
+const nomadAddress = "0x4731478A76e4bC5f012a569D061bE19c03c9177F";
+const swordContractAddr = "0xc95439940280a6964b270b0373F25258d6F53c6C";
 const universeId = 0;
 
 async function main() {

@@ -49,22 +49,22 @@ function Inventory() {
 
     useEffect(() => {
         (async () => {
-            const worldId = getSwordWorldId();
+            const worldId = await getSwordWorldId();
             if (worldId === 0) {
-                updateItems([...items, {
+                updateItems([{
                     game: kingdom,
                     img: swordKingdom,
                     name: "Sword",
                     id: 4237
-                }])
+                }, ...items])
             }
             else if (worldId === 1) {
-                updateItems([...items, {
+                updateItems([{
                     game: townsquare,
                     img: swordTown,
                     name: "Sword",
                     id: 4237
-                }])
+                }, ...items])
             }
         })();
         // run effect once

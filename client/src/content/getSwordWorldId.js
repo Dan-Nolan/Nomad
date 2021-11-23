@@ -2,8 +2,8 @@ import {ethers} from 'ethers';
 
 const ethereum = window.ethereum;
 
-const SWORD_ADDRESS = "0xcB8bA41AC64727A850e29a9971fECdFFB87dBd00";
-const NOMAD_ADDRESS = "0xcFe9AA2366f5Fb67F3D8EC2a6eB48E2a5328DDF3";
+const SWORD_ADDRESS = "0xc95439940280a6964b270b0373F25258d6F53c6C";
+const NOMAD_ADDRESS = "0x4731478A76e4bC5f012a569D061bE19c03c9177F";
 
 async function getSwordWorldId() {
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -23,7 +23,7 @@ async function getSwordWorldId() {
 
     let worldId = -1;
     try {
-        worldId = await nomad.getResourceWorldId(0, sword.address, tokenId);
+        worldId = (await nomad.getResourceWorldId(0, sword.address, tokenId)).toNumber();
     }
     catch(ex) {
 
