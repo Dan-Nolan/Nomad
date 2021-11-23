@@ -1,6 +1,6 @@
 async function main() {
   const Nomad = await hre.ethers.getContractFactory("Nomad");
-  const nomad = await Nomad.deploy();
+  const nomad = await Nomad.deploy({ gasPrice: ethers.utils.parseUnits("20", "gwei") });
 
   await nomad.deployed();
 
