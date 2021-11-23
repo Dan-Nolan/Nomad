@@ -1,4 +1,4 @@
-const nomadAddress = "0x0A48c6EE52c23a68D1cd9205333B21D0D2E5abA2";
+const nomadAddress = "0xcFe9AA2366f5Fb67F3D8EC2a6eB48E2a5328DDF3";
 
 async function main() {
     const nomad = await hre.ethers.getContractAt("Nomad", nomadAddress);

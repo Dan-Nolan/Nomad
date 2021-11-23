@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "@lukso/universalprofile-smart-contracts/contracts/LSP8IdentifiableDigitalAsset/ILSP8IdentifiableDigitalAsset.sol";
+import "./Asset.sol";
 
 contract Nomad {
     Universe[] public universes;
@@ -44,6 +44,12 @@ contract Nomad {
         require(msg.sender == universes[universeId].governor);
         Resource storage res = universes[universeId].resources[resource];
         res.initialized = true;
+    }
+
+    function mintResource(address resource, uint universeId, uint destinationWorldId) external {
+        uint tokenId = Asset(resource).mint(msg.sender);
+        Universe storage universe = universes[universeId];
+        universe.resources[resource].tokenToWorldId[tokenId] = destinationWorldId;
     }
 
     function getResourceWorldId(uint universeId, address resource, uint tokenId) external view returns(uint) {

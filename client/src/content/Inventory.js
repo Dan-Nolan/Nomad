@@ -1,28 +1,25 @@
 import "./Inventory.scss";
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from "utils/Store";
 import bow from "images/nft-bow-kingdom.jpg";
 import potion from "images/nft-potion-kingdom.jpg";
 import quarter from "images/nft-quarter-pacman.jpg";
 import shoes from "images/nft-shoes-townsquare.jpg";
 import sneakers from "images/nft-sneakers-townsquare.jpg";
-import sword from "images/nft-sword-kingdom.jpg";
+import swordKingdom from "images/nft-sword-kingdom.jpg";
+import swordTown from "images/nft-sword-townsquare.jpg";
 import kingdom from "images/kingdom-square-logo.jpg";
 import pacman from "images/pacman-square-logo.jpg";
 import townsquare from "images/townsquare-square-logo.jpg";
+import getSwordWorldId from './getSwordWorldId';
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 
-const items = [{
+const INITIAL_ITEMS = [{
     game: kingdom,
     img: bow,
     name: "Bow + Arrow",
     id: 4156
-}, {
-    game: kingdom,
-    img: sword,
-    name: "Sword",
-    id: 4237
 }, {
     game: kingdom,
     img: potion,
@@ -45,9 +42,34 @@ const items = [{
     id: 9433
 }];
 
-
 function Inventory() {
     const { profile: [profile] } = useContext(StoreContext);
+
+    const [items, updateItems] = useState(INITIAL_ITEMS);
+
+    useEffect(() => {
+        (async () => {
+            const worldId = getSwordWorldId();
+            if (worldId === 0) {
+                updateItems([...items, {
+                    game: kingdom,
+                    img: swordKingdom,
+                    name: "Sword",
+                    id: 4237
+                }])
+            }
+            else if (worldId === 1) {
+                updateItems([...items, {
+                    game: townsquare,
+                    img: swordTown,
+                    name: "Sword",
+                    id: 4237
+                }])
+            }
+        })();
+        // run effect once
+        // eslint-disable-next-line
+    }, []);
 
     if (profile.loggedIn) {
         const { address, LSP3Profile } = profile;
@@ -64,7 +86,7 @@ function Inventory() {
                                 @{name}
                             </div>
                             <div className="num">
-                                #{address.slice(2,6)}
+                                #{address.slice(2, 6)}
                             </div>
                         </div>
                         <h1>

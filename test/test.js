@@ -26,7 +26,7 @@ describe("Nomad", function () {
 
         describe("moving a resource", () => {
             let sword;
-            const tokenId = 0;
+            const tokenId = 1;
             beforeEach(async () => {
                 await nomad.createWorld(universeId, "The Lost Kingdom", treasury.address);
                 await nomad.createWorld(universeId, "Town Square", treasury.address);
