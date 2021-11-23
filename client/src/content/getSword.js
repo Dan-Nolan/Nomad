@@ -15,7 +15,11 @@ async function getSword() {
     
     const [tokenId] = await sword.tokenIdsOf(await signer.getAddress());
 
+    const abi = [
+        
+    ]
 
+    const nomad = new ethers.Contract(NOMAD_ADDRESS, abi, signer)
 }
 
 export default getSword;

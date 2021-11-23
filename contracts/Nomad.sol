@@ -19,8 +19,8 @@ contract Nomad {
     }
 
     struct Resource {
+        mapping(uint => uint) tokenToWorldId;
         bool initialized; 
-        uint worldId;
     }
 
     function createUniverse(uint _tax, address _governor) external {
@@ -40,13 +40,14 @@ contract Nomad {
         return universes[universeId].worlds[worldId];
     }
 
-    function addResource(address resource, uint universeId, uint worldId) external {
+    function addResource(address resource, uint universeId) external {
         require(msg.sender == universes[universeId].governor);
-        universes[universeId].resources[resource] = Resource(true, worldId);
+        Resource storage res = universes[universeId].resources[resource];
+        res.initialized = true;
     }
 
-    function getResource(uint universeId, address resource) external view returns(Resource memory) {
-        return universes[universeId].resources[resource];
+    function getResourceWorldId(uint universeId, address resource, uint tokenId) external view returns(uint) {
+        return universes[universeId].resources[resource].tokenToWorldId[tokenId];
     }
 
     function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable {
@@ -60,6 +61,6 @@ contract Nomad {
 
         payable(destination.treasury).transfer(msg.value);
 
-        universe.resources[resource].worldId = destinationWorldId;
+        universe.resources[resource].tokenToWorldId[tokenId] = destinationWorldId;
     }
 }

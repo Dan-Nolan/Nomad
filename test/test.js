@@ -26,6 +26,7 @@ describe("Nomad", function () {
 
         describe("moving a resource", () => {
             let sword;
+            const tokenId = 0;
             beforeEach(async () => {
                 await nomad.createWorld(universeId, "The Lost Kingdom", treasury.address);
                 await nomad.createWorld(universeId, "Town Square", treasury.address);
@@ -33,20 +34,19 @@ describe("Nomad", function () {
                 const Sword = await hre.ethers.getContractFactory("Sword");
                 sword = await Sword.deploy();
 
-                await nomad.addResource(sword.address, universeId, 0);
+                await nomad.addResource(sword.address, universeId);
 
                 await sword.mint(addr1);
-                const tokenId = 0;
 
                 await nomad.moveResource(sword.address, universeId, 1, tokenId, {
                     value: tax
                 });
             });
 
-            it("should create the resource", async () => {
-                const resource = await nomad.getResource(universeId, sword.address);
+            it("should move the resource to world 1", async () => {
+                const worldId = await nomad.getResourceWorldId(universeId, sword.address, tokenId);
 
-                assert(resource.worldId.eq(1));
+                assert(worldId.eq(1));
             });
 
             it("should pay the world treasury", async () => {
