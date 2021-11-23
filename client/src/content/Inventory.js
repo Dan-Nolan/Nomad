@@ -17,26 +17,31 @@ const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 
 const INITIAL_ITEMS = [{
     game: kingdom,
+    currentWorld: "The Lost Kingdom",
     img: bow,
     name: "Bow + Arrow",
     id: 4156
 }, {
     game: kingdom,
+    currentWorld: "The Lost Kingdom",
     img: potion,
     name: "Health Potion",
     id: 4684
 }, {
     game: pacman,
+    currentWorld: "Pac-Man World",
     img: quarter,
     name: "Extra Life Quarter",
     id: 4321
 }, {
     game: townsquare,
+    currentWorld: "Town Square",
     img: sneakers,
     name: "Air Jordan 4 Fire Red",
     id: 1379
 }, {
     game: townsquare,
+    currentWorld: "Town Square",
     img: shoes,
     name: "MIX'AIR X RN",
     id: 9433
@@ -55,6 +60,7 @@ function Inventory() {
                 updateItems([{
                     game: kingdom,
                     img: swordKingdom,
+                    currentWorld: "The Lost Kingdom",
                     name: "Sword",
                     id: 4237,
                     worldId,
@@ -64,6 +70,7 @@ function Inventory() {
                 updateItems([{
                     game: townsquare,
                     img: swordTown,
+                    currentWorld: "Town Square",
                     name: "Sword",
                     id: 4237,
                     worldId
@@ -99,7 +106,7 @@ function Inventory() {
                 </div>
 
                 <div className="items">
-                    {items.map(({ name, id, img, game }) => (
+                    {items.map(({ name, id, img, game, currentWorld, worldId }) => (
                         <div className="item">
                             <div className="display-image">
                                 <img src={img} alt={name} />
@@ -117,7 +124,7 @@ function Inventory() {
                                     <img src={game} alt={name + " game"} />
                                 </div>
                             </div>
-                            <div className="transfer-nft" onClick={() => setDialog({ display: true, name, id, img, game })}>
+                            <div className="transfer-nft" onClick={() => setDialog({ display: true, name, id, img, game, currentWorld, worldId })}>
                                 Transfer NFT
                             </div>
                         </div>

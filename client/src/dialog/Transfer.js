@@ -6,15 +6,13 @@ import townsquare from "images/townsquare-image.jpg";
 
 function Transfer() {
     const { dialog: [dialog, setDialog] } = useContext(StoreContext);
+    const { game, img, name, id, currentWorld, worldId, display } = dialog;
 
-    // game: kingdom,
-    // img: swordKingdom,
-    // name: "Sword",
-    // id: 4237,
-    // worldId,
+    const canTransfer = (worldId !== undefined);
+    
+    const [transferTo, setTransferTo] = useState(currentWorld);
 
-    if(dialog.display) {
-        const { game, img, name, id, worldId } = dialog;
+    if(display) {
         return (
             <div className="dialog">
                 <div className="transfer">
@@ -31,7 +29,11 @@ function Transfer() {
                             </div>
                         </div>
                         <div className="bottom">
-                            <div className="initiate-transfer">
+                            <TransferComponent 
+                                dialog={dialog} 
+                                transferTo={transferTo} 
+                                setTransferTo={setTransferTo} />
+                            <div className="initiate-transfer" disabled={!canTransfer}>
                                 Initiate Transfer
                             </div>
                         </div>
@@ -43,6 +45,33 @@ function Transfer() {
     }
 
     return null;
+}
+
+function TransferComponent({ dialog, transferTo, setTransferTo }) {
+    const { game, currentWorld, worldId } = dialog;
+    return (
+        <div className="transfer-component">
+            <div className="transfer-input">
+                <label>Current Location:</label>
+                <div className="field">
+                    <div className="location">
+                        { currentWorld }
+                    </div>
+                    <img src={game} alt="game" />
+                </div>
+            </div>
+
+            <div className="transfer-input">
+                <label>Transfer To:</label>
+                <div className="field">
+                    <div className="location">
+                        { currentWorld }
+                    </div>
+                    <img src={game} alt="game" />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Transfer;
