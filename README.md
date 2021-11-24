@@ -20,7 +20,7 @@ Once you're logged in you'll be able navigate the website and play **The Lost Ki
 
 This application includes **contracts** which can be deployed through [hardhat](https://hardhat.org/) scripts. These scripts deploy nomad and build all its state and resources. Once all dependencies are install you can add a `.env` with a `PRIVATE_KEY` and run these scripts with `npm hardhat run scripts/NAME_OF_SCRIPT.js --network lukso`. The contracts can also be tested with `npx hardhat test`.
 
-The `client` folder contains a react application that runs the main UI. To run this UI you can navigate to the `client` folder and run `npm run start`. This application also requires both the **Town Square** and **Nomad World** projects to also be running (if you'd like to play the games and transfer the item).
+The `client` folder contains a react application that runs the main UI. To run this UI you can navigate to the `client` folder and run `npm run start`. This application also requires both the **Town Square** and **Nomad World** games be running if you'd like to play the games and transfer the sword NFT between them. 
 
 ### Slide Deck
 
