@@ -6,6 +6,14 @@ The Nomad Protocol is built for transferring assets across games and immersive s
 
 Nomad provides the missing incentive for game developers to cooperate and render NFTs which are shared across games (worlds) and governance frameworks (universes). The smart contracts provide a lightweight framework with plug-and-play governance and incentivization through protocol fees. 
 
+### YouTube Demo
+
+Check out our [YouTube Demo](https://www.youtube.com/watch?v=m7gDOPQfLS8)!
+
+### Slide Deck
+
+Check out our [Slide Deck](https://github.com/Dan-Nolan/Nomad/blob/0e5e9ca09bdddef6bb93e98edab505b87ddb69cd/design/Nomad.pdf)!
+
 ### Website 
 
 The application is hosted on https://mynomad.quest/ 
@@ -21,7 +29,3 @@ Once you're logged in you'll be able navigate the website and play **The Lost Ki
 This application includes **contracts** which can be deployed through [hardhat](https://hardhat.org/) scripts. These scripts deploy nomad and build all its state and resources. Once all dependencies are install you can add a `.env` with a `PRIVATE_KEY` and run these scripts with `npm hardhat run scripts/NAME_OF_SCRIPT.js --network lukso`. The contracts can also be tested with `npx hardhat test`.
 
 The `client` folder contains a react application that runs the main UI. To run this UI you can navigate to the `client` folder and run `npm run start`. This application also requires both the **Town Square** and **Nomad World** games be running if you'd like to play the games and transfer the sword NFT between them. 
-
-### Slide Deck
-
-Check out our [Slide Deck](https://github.com/Dan-Nolan/Nomad/blob/0e5e9ca09bdddef6bb93e98edab505b87ddb69cd/design/Nomad.pdf)!
