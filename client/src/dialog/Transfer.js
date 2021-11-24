@@ -3,6 +3,7 @@ import { StoreContext } from "utils/Store";
 import { useState, useContext } from 'react';
 import kingdom from "images/kingdom-square-logo.jpg";
 import townsquare from "images/townsquare-square-logo.jpg";
+import nomadIcon from "images/nomad-icon-white-transfer@2x.png";
 import { ethers } from 'ethers';
 
 const ethereum = window.ethereum;
@@ -45,6 +46,10 @@ function Transfer() {
     if(display) {
         return (
             <div className="dialog">
+                <div className="banner">
+                    <img src={nomadIcon} alt="nomad icon" />
+                    <div className="title"> Transfer NFT </div>
+                </div>
                 <div className="transfer">
                     <div className="display-image">
                         <img src={img} alt="display" />
