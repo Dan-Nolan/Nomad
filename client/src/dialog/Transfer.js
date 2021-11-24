@@ -1,8 +1,13 @@
 import "./Transfer.scss";
 import { StoreContext } from "utils/Store";
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import kingdom from "images/kingdom-square-logo.jpg";
 import townsquare from "images/townsquare-square-logo.jpg";
+import { ethers } from 'ethers';
+
+const ethereum = window.ethereum;
+const SWORD_ADDRESS = "0xc95439940280a6964b270b0373F25258d6F53c6C";
+const NOMAD_ADDRESS = "0x4731478A76e4bC5f012a569D061bE19c03c9177F";
 
 function Transfer() {
     const { dialog: [dialog, setDialog] } = useContext(StoreContext);
@@ -10,7 +15,21 @@ function Transfer() {
 
     const canTransfer = (worldId !== undefined);
 
-    const [transferTo, setTransferTo] = useState(currentWorld);
+    async function runTransfer() {
+        if(canTransfer) {
+            await ethereum.request({ method: 'eth_requestAccounts' });
+            
+            const provider = new ethers.providers.Web3Provider(ethereum);
+            const signer = await provider.getSigner(0);
+            
+            const nomad = new ethers.Contract(NOMAD_ADDRESS, [
+                "function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable"
+            ], signer);
+            await nomad.moveResource(SWORD_ADDRESS, 0, worldId === 0 ? 1: 0, 1, {
+                value: 1
+            });
+        }
+    }
 
     if(display) {
         return (
@@ -29,11 +48,8 @@ function Transfer() {
                             </div>
                         </div>
                         <div className="bottom">
-                            <TransferComponent 
-                                dialog={dialog} 
-                                transferTo={transferTo} 
-                                setTransferTo={setTransferTo} />
-                            <div className="initiate-transfer" disabled={!canTransfer}>
+                            <TransferComponent game={game} currentWorld={currentWorld} worldId={worldId} />
+                            <div className="initiate-transfer" disabled={!canTransfer} onClick={runTransfer}>
                                 Initiate Transfer
                             </div>
                         </div>
@@ -47,8 +63,7 @@ function Transfer() {
     return null;
 }
 
-function TransferComponent({ dialog, transferTo, setTransferTo }) {
-    const { game, currentWorld, worldId } = dialog;
+function TransferComponent({ game, currentWorld, worldId }) {
     let otherWorld = currentWorld; 
     let otherGame = game;
     if(worldId !== undefined) {

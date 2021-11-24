@@ -67,7 +67,7 @@ function Integrations() {
 function ExternalLink({ link }) {
     if(link) {
         return (
-            <a href={link} target="_blank">Play this Game!</a>
+            <a href={link} target="_blank" rel="noreferrer">Play this Game!</a>
         );
     }
     return null;

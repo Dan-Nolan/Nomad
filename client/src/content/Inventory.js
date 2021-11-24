@@ -49,7 +49,7 @@ const INITIAL_ITEMS = [{
 
 function Inventory() {
     const { profile: [profile] } = useContext(StoreContext);
-    const { dialog: [dialog, setDialog] } = useContext(StoreContext);
+    const { dialog: [,setDialog] } = useContext(StoreContext);
 
     const [items, updateItems] = useState(INITIAL_ITEMS);
 
