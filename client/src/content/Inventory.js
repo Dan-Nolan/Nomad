@@ -11,7 +11,7 @@ import swordTown from "images/nft-sword-townsquare.jpg";
 import kingdom from "images/kingdom-square-logo.jpg";
 import pacman from "images/pacman-square-logo.jpg";
 import townsquare from "images/townsquare-square-logo.jpg";
-import getSwordWorldId from './getSwordWorldId';
+import getSwordIds from './getSwordIds';
 
 const IPFS_BASE = "https://ipfs.lukso.network/ipfs/";
 
@@ -55,11 +55,12 @@ function Inventory() {
 
     useEffect(() => {
         (async () => {
-            const worldId = await getSwordWorldId();
+            const [tokenId, worldId] = await getSwordIds();
             if (worldId === 0) {
                 updateItems([{
                     game: kingdom,
                     img: swordKingdom,
+                    tokenId,
                     currentWorld: "The Lost Kingdom",
                     name: "Sword",
                     id: 4237,
@@ -70,6 +71,7 @@ function Inventory() {
                 updateItems([{
                     game: townsquare,
                     img: swordTown,
+                    tokenId,
                     currentWorld: "Town Square",
                     name: "Sword",
                     id: 4237,
@@ -106,7 +108,7 @@ function Inventory() {
                 </div>
 
                 <div className="items">
-                    {items.map(({ name, id, img, game, currentWorld, worldId }) => (
+                    {items.map(({ name, id, img, game, currentWorld, worldId, tokenId }) => (
                         <div className="item">
                             <div className="display-image">
                                 <img src={img} alt={name} />
@@ -124,7 +126,7 @@ function Inventory() {
                                     <img src={game} alt={name + " game"} />
                                 </div>
                             </div>
-                            <div className="transfer-nft" onClick={() => setDialog({ display: true, name, id, img, game, currentWorld, worldId })}>
+                            <div className="transfer-nft" onClick={() => setDialog({ display: true, name, id, img, game, currentWorld, worldId, tokenId })}>
                                 Transfer NFT
                             </div>
                         </div>

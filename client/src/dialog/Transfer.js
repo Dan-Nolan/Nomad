@@ -12,7 +12,7 @@ const NOMAD_ADDRESS = "0x4731478A76e4bC5f012a569D061bE19c03c9177F";
 
 function Transfer() {
     const { dialog: [dialog, setDialog] } = useContext(StoreContext);
-    const { game, img, name, id, currentWorld, worldId, display } = dialog;
+    const { game, img, name, id, currentWorld, worldId, tokenId, display } = dialog;
 
     const [transferring, setTransferring] = useState(false);
 
@@ -29,7 +29,7 @@ function Transfer() {
                 "function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable"
             ], signer);
             
-            const tx = await nomad.moveResource(SWORD_ADDRESS, 0, worldId === 0 ? 1: 0, 1, {
+            const tx = await nomad.moveResource(SWORD_ADDRESS, 0, worldId === 0 ? 1: 0, tokenId, {
                 value: 1
             });
 
