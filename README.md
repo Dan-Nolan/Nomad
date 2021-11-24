@@ -24,4 +24,4 @@ The `client` folder contains a react application that runs the main UI. To run t
 
 ### Slide Deck
 
-Check out our [Slide Deck](https://github.com/Dan-Nolan/Nomad/design/Nomad.pdf)!
+Check out our [Slide Deck](https://github.com/Dan-Nolan/Nomad/blob/0e5e9ca09bdddef6bb93e98edab505b87ddb69cd/design/Nomad.pdf)!
