@@ -3,6 +3,7 @@ import kingdom from "images/kingdom-image.jpg";
 import pacman from "images/pacman-image.jpg";
 import townsquare from "images/townsquare-image.jpg";
 import stardew from "images/stardew-image.jpg";
+import { Link } from "react-router-dom";
 
 const integrations = [{
     name: "The Lost Kingdom",
@@ -49,12 +50,16 @@ function Integrations() {
                             {description}
                         </p>
 
-                        <div className="inventory" style={{ "background-color": color }}>
-                            View My Inventory
-                        </div>
-                        <div className="proposals">
-                            Proposals
-                        </div>
+                        <Link to="/" className="internal-link">
+                            <div className="inventory" style={{ "background-color": color }}>
+                                View My Inventory
+                            </div>
+                        </Link>
+                        <Link to="/proposals" className="internal-link">
+                            <div className="proposals">
+                                Proposals
+                            </div>
+                        </Link>
 
                         <ExternalLink link={link} />
                     </div>
@@ -65,9 +70,9 @@ function Integrations() {
 }
 
 function ExternalLink({ link }) {
-    if(link) {
+    if (link) {
         return (
-            <a href={link} target="_blank" rel="noreferrer">Play this Game!</a>
+            <a href={link} className="external-link" target="_blank" rel="noreferrer">Play this Game!</a>
         );
     }
     return null;

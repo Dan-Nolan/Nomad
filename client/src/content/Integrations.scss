@@ -31,19 +31,29 @@
                 margin: 10px 0 30px;
             }
 
+            a.internal-link {
+                text-decoration: none;
+            }
+
             .inventory {
                 background-color: black;
-                color: white;
+                text-decoration: none;
                 margin: 10px 0;
+                color: white;
+                font-weight: 500;
             }
 
             .proposals {
-                border: 2px solid #bbb;
-                color: #bbb;
+                border: 2px solid #cbd0d8;
+                text-decoration: none;
                 margin: 10px 0;
+                color: #2a2c2e;
+                opacity: 0.35;
+                font-weight: 500;
             }
 
-            a {
+            a.external-link {
+                margin-top: 15px;
                 text-align: center;
                 display: block;
                 color: #9f9f9f;

@@ -48,7 +48,7 @@ function Proposals() {
                         {proposals.length} Proposals
                     </div>
 
-                    <div className="create-proposal">
+                    <div className="create-proposal" onClick={() => alert("Coming soon :)")}>
                         + Create New Proposal
                     </div>
                 </div>
