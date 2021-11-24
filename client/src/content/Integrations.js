@@ -8,23 +8,23 @@ import { Link } from "react-router-dom";
 const integrations = [{
     name: "The Lost Kingdom",
     img: kingdom,
-    description: "Check out how awesome this game is. Its got really cool stuff and all that jazz",
+    description: "Fight your way through hordes of skeletons, bats and ogre archers in this exciting browser demo game!",
     color: "#00511D",
     link: "https://tlk.mynomad.quest"
 }, {
     name: "Town Square",
-    description: "Check out how awesome this game is",
+    description: "Visit to hang out with friends and show cool items that you earned questing in the Nomad universes!",
     color: "black",
     img: townsquare,
     link: "https://town.mynomad.quest"
 }, {
     name: "Stardew Valley",
-    description: "Check out how awesome this game is",
+    description: "You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life!",
     color: "#1160B9",
     img: stardew
 }, {
     name: "Pac-Man World",
-    description: "Check out how awesome this game is",
+    description: "James Halliday is said to have earned a perfect score on Pac-Man in the Gregarious Games break room.",
     color: "#F60000",
     img: pacman
 }];
