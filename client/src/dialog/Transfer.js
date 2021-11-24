@@ -1,6 +1,6 @@
 import "./Transfer.scss";
 import { StoreContext } from "utils/Store";
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import kingdom from "images/kingdom-square-logo.jpg";
 import townsquare from "images/townsquare-square-logo.jpg";
 import { ethers } from 'ethers';
@@ -13,7 +13,9 @@ function Transfer() {
     const { dialog: [dialog, setDialog] } = useContext(StoreContext);
     const { game, img, name, id, currentWorld, worldId, display } = dialog;
 
-    const canTransfer = (worldId !== undefined);
+    const [transferring, setTransferring] = useState(false);
+
+    const canTransfer = (worldId !== undefined) && !transferring;
 
     async function runTransfer() {
         if(canTransfer) {
@@ -25,9 +27,18 @@ function Transfer() {
             const nomad = new ethers.Contract(NOMAD_ADDRESS, [
                 "function moveResource(address resource, uint universeId, uint destinationWorldId, uint tokenId) external payable"
             ], signer);
-            await nomad.moveResource(SWORD_ADDRESS, 0, worldId === 0 ? 1: 0, 1, {
+            
+            const tx = await nomad.moveResource(SWORD_ADDRESS, 0, worldId === 0 ? 1: 0, 1, {
                 value: 1
             });
+
+            setTransferring(true);
+
+            await tx.wait();
+
+            setTransferring(false);
+
+            window.location.reload();
         }
     }
 
